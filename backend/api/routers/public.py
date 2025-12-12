@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends
 from sqlmodel import Session
-from app.database import get_db
-from app.middleware.mitigation import DDoSMitigation
+from api.database import get_db
+from api.middleware.mitigation import DDoSMitigation
 from datetime import datetime
 
 

@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session
-from app.database import get_db
-from app.services.rules_service import RulesService
-from app.services.logs_service import LogsService
-from app.services.stats_service import StatsService
-from app.services.ip_service import IPService
-from app.services.traffic_service import TrafficService
-from app.models.rules import Rules
+from api.database import get_db
+from api.services.rules_service import RulesService
+from api.services.logs_service import LogsService
+from api.services.stats_service import StatsService
+from api.services.ip_service import IPService
+from api.services.traffic_service import TrafficService
+from api.models.rules import Rules
 from pydantic import BaseModel
 from typing import Optional, List
 

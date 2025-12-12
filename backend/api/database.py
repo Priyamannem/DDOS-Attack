@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, create_engine, Session
-from app.core.config import settings
+from api.core.config import settings
 from contextlib import contextmanager
 from typing import Generator
 

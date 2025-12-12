@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.models.logs import Log
+from api.models.logs import Log
 from datetime import datetime
 from typing import List, Optional
 

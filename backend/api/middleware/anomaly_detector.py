@@ -1,10 +1,10 @@
 from fastapi import Request
 from sqlmodel import Session, select
-from app.services.rules_service import RulesService
-from app.services.logs_service import LogsService
-from app.services.ip_service import IPService
-from app.models.ip_activity import IPActivity
-from app.core.logger import logger
+from api.services.rules_service import RulesService
+from api.services.logs_service import LogsService
+from api.services.ip_service import IPService
+from api.models.ip_activity import IPActivity
+from api.core.logger import logger
 from datetime import datetime, timedelta
 from collections import defaultdict
 from typing import Dict

@@ -2,7 +2,7 @@ import logging
 import sys
 from pathlib import Path
 from pythonjsonlogger import jsonlogger
-from app.core.config import settings
+from api.core.config import settings
 
 
 def setup_logger(name: str = "ddos_system") -> logging.Logger:

@@ -1,14 +1,16 @@
 from fastapi import FastAPI, Request
+import asyncio
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlmodel import Session
 from contextlib import asynccontextmanager
 
-from app.core.config import settings
-from app.core.logger import logger
-from app.database import create_db_and_tables, get_session
-from app.middleware.mitigation import DDoSMitigation
-from app.routers import admin, simulate, public
+from api.core.config import settings
+from api.core.logger import logger
+from api.database import create_db_and_tables, get_session
+from api.middleware.mitigation import DDoSMitigation
+from api.routers import admin, simulate, public
+from api.services.stats_service import StatsService
 
 
 @asynccontextmanager
@@ -20,9 +22,22 @@ async def lifespan(app: FastAPI):
     create_db_and_tables()
     logger.info("Database initialized successfully")
     
+    # Start background stats aggregation
+    async def stats_aggregator():
+        while True:
+            try:
+                with get_session() as session:
+                    StatsService.aggregate_current_traffic(session)
+            except Exception as e:
+                logger.error(f"Error in stats aggregator: {e}")
+            await asyncio.sleep(5)  # Update every 5 seconds
+
+    task = asyncio.create_task(stats_aggregator())
+    
     yield
     
     # Shutdown
+    task.cancel()
     logger.info("Shutting down DDoS Prevention System...")
 
 
@@ -101,7 +116,7 @@ if __name__ == "__main__":
     import uvicorn
     
     uvicorn.run(
-        "app.main:app",
+        "api.main:app",
         host="0.0.0.0",
         port=8000,
         reload=settings.DEBUG,

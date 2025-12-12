@@ -1,8 +1,8 @@
 from sqlmodel import Session, select
-from app.models.rules import Rules
+from api.models.rules import Rules
 from datetime import datetime
 from typing import Optional
-from app.core.config import settings
+from api.core.config import settings
 
 
 class RulesService:

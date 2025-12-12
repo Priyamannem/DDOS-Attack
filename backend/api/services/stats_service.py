@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from app.models.traffic_stats import TrafficStats
+from api.models.traffic_stats import TrafficStats
 from datetime import datetime, timedelta
 from typing import List
 
@@ -54,3 +54,33 @@ class StatsService:
             )
         
         return stats
+
+    @staticmethod
+    def aggregate_current_traffic(session: Session) -> TrafficStats:
+        """Calculate current traffic stats from recent logs and record them"""
+        from api.models.logs import Log
+        
+        # Look back 10 seconds for "current" rate
+        # We multiply by 6 to get per-minute rate
+        window_seconds = 10
+        cutoff_time = datetime.utcnow() - timedelta(seconds=window_seconds)
+        
+        statement = select(Log).where(Log.timestamp >= cutoff_time)
+        recent_logs = session.exec(statement).all()
+        
+        total_count = len(recent_logs)
+        blocked_count = len([l for l in recent_logs if l.status == "blocked"])
+        suspicious_count = len([l for l in recent_logs if l.status == "suspicious"])
+        
+        # Calculate rates
+        req_per_sec = int(total_count / window_seconds)
+        req_per_min = total_count * (60 // window_seconds)
+        
+        # Record stats
+        return StatsService.record_stats(
+            session,
+            requests_per_second=req_per_sec,
+            requests_per_minute=req_per_min,
+            blocked_count=blocked_count,
+            suspicious_count=suspicious_count
+        )

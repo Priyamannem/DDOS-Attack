@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
-from app.models.blacklist import Blacklist
-from app.models.whitelist import Whitelist
+from api.models.blacklist import Blacklist
+from api.models.whitelist import Whitelist
 from datetime import datetime
 from typing import List, Optional
 

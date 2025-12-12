@@ -7,7 +7,7 @@ Write-Host "=" * 60 -ForegroundColor Cyan
 
 # Activate virtual environment
 Write-Host "`nActivating virtual environment..." -ForegroundColor Yellow
-& .\venv\Scripts\Activate.ps1
+& .\myvenv\Scripts\Activate.ps1
 
 # Check if .env exists
 if (-not (Test-Path ".env")) {
@@ -22,4 +22,4 @@ Write-Host "  API Docs: http://localhost:8000/docs" -ForegroundColor Cyan
 Write-Host "  Health: http://localhost:8000/health" -ForegroundColor Cyan
 Write-Host "`nPress Ctrl+C to stop the server`n" -ForegroundColor Gray
 
-python -m app.main
+python -m api.main

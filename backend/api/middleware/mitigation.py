@@ -1,12 +1,12 @@
 from fastapi import Request, Response
 from fastapi.responses import JSONResponse
 from sqlmodel import Session
-from app.middleware.rate_limiter import RateLimiter
-from app.middleware.anomaly_detector import AnomalyDetector
-from app.middleware.ip_reputation import IPReputation
-from app.services.logs_service import LogsService
-from app.database import get_session
-from app.core.logger import logger
+from api.middleware.rate_limiter import RateLimiter
+from api.middleware.anomaly_detector import AnomalyDetector
+from api.middleware.ip_reputation import IPReputation
+from api.services.logs_service import LogsService
+from api.database import get_session
+from api.core.logger import logger
 from datetime import datetime
 
 

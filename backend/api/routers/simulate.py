@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 from sqlmodel import Session
-from app.database import get_db
-from app.services.logs_service import LogsService
-from app.services.ip_service import IPService
-from app.core.utils import generate_random_ip
-from app.core.logger import logger
+from api.database import get_db
+from api.services.logs_service import LogsService
+from api.services.ip_service import IPService
+from api.core.utils import generate_random_ip
+from api.core.logger import logger
 import random
 from datetime import datetime
 

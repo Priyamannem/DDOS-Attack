@@ -2,11 +2,11 @@
 Database initialization script
 Run this to set up the database with initial data
 """
-from app.database import create_db_and_tables, get_session
-from app.services.rules_service import RulesService
-from app.services.traffic_service import TrafficService
-from app.core.config import settings
-from app.core.logger import logger
+from api.database import create_db_and_tables, get_session
+from api.services.rules_service import RulesService
+from api.services.traffic_service import TrafficService
+from api.core.config import settings
+from api.core.logger import logger
 
 
 def initialize_database():

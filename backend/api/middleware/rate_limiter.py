@@ -1,9 +1,9 @@
 from fastapi import Request, HTTPException
 from sqlmodel import Session
-from app.services.ip_service import IPService
-from app.services.rules_service import RulesService
-from app.services.logs_service import LogsService
-from app.core.logger import logger
+from api.services.ip_service import IPService
+from api.services.rules_service import RulesService
+from api.services.logs_service import LogsService
+from api.core.logger import logger
 from datetime import datetime
 
 

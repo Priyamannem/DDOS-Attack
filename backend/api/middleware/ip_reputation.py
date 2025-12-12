@@ -1,7 +1,7 @@
 from sqlmodel import Session
-from app.services.traffic_service import TrafficService
-from app.services.ip_service import IPService
-from app.core.logger import logger
+from api.services.traffic_service import TrafficService
+from api.services.ip_service import IPService
+from api.core.logger import logger
 
 
 class IPReputation:

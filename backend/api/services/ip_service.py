@@ -1,8 +1,8 @@
 from sqlmodel import Session, select
-from app.models.ip_activity import IPActivity
+from api.models.ip_activity import IPActivity
 from datetime import datetime
 from typing import Optional
-from app.core.utils import is_blocked_active, calculate_block_until
+from api.core.utils import is_blocked_active, calculate_block_until
 
 
 class IPService:
